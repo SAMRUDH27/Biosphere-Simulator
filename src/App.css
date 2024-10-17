@@ -1,38 +1,161 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Base styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Simulator container */
+.simulator-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+  overflow: hidden;
+  padding: 1rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+/* Header styles */
+.simulator-header {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.simulator-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Health bar styles */
+.health-bar-container {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  height: 1rem;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.health-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.health-text {
+  color: white;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* Alert styles */
+.alert {
+  background-color: rgba(255, 243, 205, 0.9);
+  border-left: 4px solid #FFA000;
+  color: #856404;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.alert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.alert-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Biosphere element styles */
+.biosphere-element {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.biosphere-element:hover {
+  transform: scale(1.2);
+}
+
+.biosphere-element-inner {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.element-active .biosphere-element-inner {
+  background-color: rgba(76, 175, 80, 0.2);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+.element-inactive .biosphere-element-inner {
+  background-color: rgba(158, 158, 158, 0.2);
+  filter: grayscale(1);
+}
+
+/* Elements container */
+.elements-container {
+  position: relative;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+/* Footer styles */
+.simulator-footer {
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-.App-link {
-  color: #61dafb;
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.element-active .biosphere-element-inner {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .simulator-title {
+    font-size: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .biosphere-element-inner {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
   }
 }
